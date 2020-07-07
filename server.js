@@ -45,7 +45,6 @@ io.on(CONNECTION, function (socket) {
     });
 
     socket.on(MESSAGE, function (payload) {
-        // console.log({ data })
         let user = _.find(activeUsers, e => e.userId == socket.userId)
         let distance = null;
         console.log(socket.userId)
@@ -60,7 +59,4 @@ io.on(CONNECTION, function (socket) {
         io.emit(EMIT_MESSAGE, { ...payload, distance });
     });
 
-    /*socket.on(TYPING, function (data) {
-        socket.broadcast.emit(EMIT_TYPING, data);
-    });*/
 });

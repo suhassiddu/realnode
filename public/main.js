@@ -72,19 +72,6 @@ const addNewMessage = ({ user, message }) => {
 // new user is created so we generate nickname and emit event
 newUserConnected();
 
-/*messageForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!inputField.value) {
-        return;
-    }
-
-    socket.emit(EMIT_MESSAGE, {
-        message: inputField.value,
-        nick: userName,
-    });
-
-    inputField.value = "";
-});*/
 
 setInterval(function () {
   console.log("Hello");
@@ -100,13 +87,6 @@ setInterval(function () {
   });
 }, 3000);
 
-/*inputField.addEventListener("keyup", () => {
-    socket.emit(EMIT_TYPING, {
-        isTyping: inputField.value.length > 0,
-        nick: userName,
-    });
-});*/
-
 socket.on(NEW_USER, function (data) {
   data.map((user) => addToUsersBox(user));
 });
@@ -118,15 +98,3 @@ socket.on(DISCONNECT, function (userName) {
 socket.on(MESSAGE, function (data) {
   addNewMessage({ user: data.nick, message: data.message });
 });
-
-
-/*socket.on(TYPING, function (data) {
-    const { isTyping, nick } = data;
-
-    if (!isTyping) {
-        fallback.innerHTML = "";
-        return;
-    }
-
-    fallback.innerHTML = `<p>${nick} is typing...</p>`;
-});*/
